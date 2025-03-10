@@ -42,7 +42,7 @@ async def search():
     logger.debug(f'received request with keywords: {keywords}, max_results: {max_results}')
 
     results = []
-    with DDGS() as ddgs:
+    with DDGS(timeout=30) as ddgs:
         # 使用DuckDuckGo搜索关键词
         ddgs_gen = ddgs.text(keywords, region='cn-zh', safesearch='on', timelimit='y', backend="lite")
         # 从搜索结果中获取最大结果数
